@@ -6,12 +6,19 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import com.example.wsbp.service.IUserService;
+
 import org.wicketstuff.annotation.mount.MountPath;
 
 import javax.sound.midi.Soundbank;
 
 @MountPath("UserMarker")
 public class UserMarkerPage extends WebPage{
+    //IUserService を IoC/DI する
+    @SpringBean
+    private IUserService userService;
+
     public UserMarkerPage(){
         //送信されたユーザ名、パスワードを受け取り管理するインスタンスを作成
         var userNameModel = Model.of("");
@@ -33,6 +40,10 @@ public class UserMarkerPage extends WebPage{
                 // 他のページに移動させるLinkコンポーネント等で利用する
                 setResponsePage(new UserMakerCompPage(userNameModel));
                 //userNameModelを渡しているので、それを利用したページを精製・移動できる
+                // IoC/DI した userService のメソッドを呼び出す
+
+                userService.registerUser(userName, userPass);
+                setResponsePage(new UserMakerCompPage(userNameModel));
             }
         };
         add(userInfoForm);
