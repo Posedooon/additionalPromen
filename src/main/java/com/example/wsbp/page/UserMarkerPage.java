@@ -29,6 +29,10 @@ public class UserMarkerPage extends WebPage{
                         +","
                         +userPass;
                 System.out.println(msg);
+                //次に表示するページを表示させる命令。onSubmitやデータを
+                // 他のページに移動させるLinkコンポーネント等で利用する
+                setResponsePage(new UserMakerCompPage(userNameModel));
+                //userNameModelを渡しているので、それを利用したページを精製・移動できる
             }
         };
         add(userInfoForm);
