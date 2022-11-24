@@ -30,6 +30,10 @@ public class HomePage extends WebPage{
     //BookmarkablePageLinkコンポーネントを使って、toUserMaker のタグを UserMakerPage へのリンクに書き換えるようにする。
         var toUserMakerLink = new BookmarkablePageLink<>("toUserMaker", UserMarkerPage.class);
         add(toUserMakerLink);
+
+        //BookmarkablePageLinkコンポーネントを使って、toUserDeleter のタグを UserDeleterPage へのリンクに書き換えるようにする。
+        var toUserDeleterLink = new BookmarkablePageLink<>("toUserDeleter", UserDeletePage.class);
+        add(toUserDeleterLink);
     }
 }
 /*

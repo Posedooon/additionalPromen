@@ -21,4 +21,11 @@ public class AuthUserRepository implements IAuthUserRepository{
         var n = jdbc.update(sql,userName,userPass);
         return n;
     }
+    @Override
+    public int delete(String userName) {
+        var sql = "delete from auth_user where user_name = ?";
+        var n = jdbc.update(sql,userName);
+        return n;
+    }
 }
+
