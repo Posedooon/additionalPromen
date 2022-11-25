@@ -11,6 +11,8 @@ import com.example.wsbp.service.IUserService;
 
 import org.wicketstuff.annotation.mount.MountPath;
 
+import javax.servlet.ServletOutputStream;
+
 @MountPath("UserDeleter")
 public class UserDeletePage extends WebPage{
     //IUserService を IoC/DI する
@@ -34,12 +36,16 @@ public class UserDeletePage extends WebPage{
                 System.out.println(msg);
                 //次に表示するページを表示させる命令。onSubmitやデータを
                 // 他のページに移動させるLinkコンポーネント等で利用する
+                try{
                 setResponsePage(new UserDeleteCompPage(userNameModel));
                 //userNameModelを渡しているので、それを利用したページを精製・移動できる
                 // IoC/DI した userService のメソッドを呼び出す
-
                 userService.deleteUser(userName);
                 setResponsePage(new UserDeleteCompPage(userNameModel));
+            }catch (Exception e){
+                    System.out.println("参照に失敗しました");
+                    setResponsePage(new UserDeleteErrorPage(userNameModel));
+                }
             }
         };
         add(userInfoForm);
