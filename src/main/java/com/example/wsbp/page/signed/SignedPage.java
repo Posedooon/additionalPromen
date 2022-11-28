@@ -14,7 +14,8 @@ import org.wicketstuff.annotation.mount.MountPath;
 @MountPath("Signed")
 public class SignedPage extends WebPage{
     public SignedPage(){
-        var name = Model.of("test");
+        //MySessionのgetUserNameを使って表示名を切り替えている
+        var name = Model.of(MySession.get().getUserName());
         var userNameLabel = new Label("userName",name);
         add(userNameLabel);
 
