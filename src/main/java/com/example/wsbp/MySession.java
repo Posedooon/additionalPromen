@@ -15,6 +15,14 @@ public class MySession extends AbstractAuthenticatedWebSession{
         super(request);
         this.userName = null;
     }
+
+    public void sign(String userName) {
+        // 認証したユーザを変更する。
+        // セキュリティ上の配慮から、セッションを切り替える（古いセッションを使い回さない）
+        replaceSession();
+        this.userName = userName;
+    }
+
     @Override
     public Roles getRoles() {
         // 認証結果OK(userName = ユーザー名)だった場合は、誰もが "USER" 権限を持っているとして返す
