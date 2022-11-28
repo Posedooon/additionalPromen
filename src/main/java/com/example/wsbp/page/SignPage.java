@@ -2,12 +2,14 @@ package com.example.wsbp.page;
 
 import com.example.wsbp.MySession;
 import com.example.wsbp.page.signed.SignedPage;
+import com.example.wsbp.service.IUserService;
 import com.giffing.wicket.spring.boot.context.scan.WicketSignInPage;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -16,19 +18,22 @@ import java.util.Objects;
 @WicketSignInPage
 @MountPath("Sign")
 public class SignPage extends WebPage{
+    // ServiceをIoC/DIする
+    @SpringBean
+    private IUserService service;
     public SignPage(){
         var userNameModel = Model.of("");
         var userPassModel = Model.of("");
 
-        var userInfoForm = new Form<>("userInfo") {
+        var userInfoForm = new Form<Void>("userInfo") {
             //匿名クラス
             @Override
             protected void onSubmit() {
                 var userName = userNameModel.getObject();
                 var userPass = userPassModel.getObject();
-                if (Objects.equals(userName, "b1970010")
-                        && Objects.equals(userPass, "qwertyui")) {
-                    MySession.get().sign(userName);
+                // b1992490...の定数で照合していたものを、DB経由に変更
+                if (service.existsUser(userName,userPass)){
+                   MySession.get().sign(userName);
                 }
                 setResponsePage(new SignedPage());
             }

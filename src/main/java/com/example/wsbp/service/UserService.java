@@ -24,6 +24,12 @@ public class UserService implements IUserService{
         int n = authUserRepos.delete(userName);
         System.out.println("記録行数:"+n);
     }
+    @Override
+    public boolean existsUser(String userName, String userPass) {
+        var result = authUserRepos.exists(userName, userPass);
+        System.out.println(userName + ", " + userPass + " のユーザ照合結果：" + result);
+        return result;
+    }
     /*
 ブラウザから入力・送信された値は、UserMakerPage の Form の onSubmit の中で取得される
 UserMakerPage の Form は、 IUserService のregisterUser機能に、取得した入力値（記録してほしいユーザIdとパスワード）を依頼する
