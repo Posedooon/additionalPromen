@@ -1,4 +1,9 @@
 package com.example.wsbp.repository;
+
+import com.example.wsbp.data.AuthUser;
+
+import java.util.List;
+
 //データベースなどの、アプリケーション外のデータ元（データ・ソース）を使うときに、
 // Springでは Repository というクラスを作成する。
 public interface IAuthUserRepository {
@@ -28,4 +33,11 @@ public interface IAuthUserRepository {
      */
     public boolean exists(String userName, String userPass);
 
+
+
+    /**
+     * AuthUserテーブルのすべての情報を検索する
+     *
+     * @return レコードの内容を {@link AuthUser} の {@link List} で返す
+     */  public List<AuthUser> find();
 }

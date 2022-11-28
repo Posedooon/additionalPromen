@@ -1,4 +1,9 @@
 package com.example.wsbp.service;
+
+import com.example.wsbp.data.AuthUser;
+
+import java.util.List;
+
 //サービス-＞リポジトリを利用する部分
 public interface IUserService {
 
@@ -13,5 +18,13 @@ public interface IUserService {
      * @return 照合成功であれば<code>true</code>, 照合失敗は<code>false</code>
      */
     public boolean existsUser(String userName, String userPass);
+
+
+    /**
+     * ユーザ名とパスワードの一覧を、AuthUser型のリストで検索する
+     *
+     * @return AuthUser型のListインスタンス
+     */
+    public List<AuthUser> findAuthUsers();
 
 }
