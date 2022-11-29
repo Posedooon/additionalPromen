@@ -65,5 +65,12 @@ public class AuthUserRepository implements IAuthUserRepository{
         // 取り出したデータ（Listの要素）をそのまま返値とする。
         return users;
     }
+    @Override
+    public int sendMessage(String userName,String textBody){
+        //送信メッセージをchatテーブルに登録する
+        String sql = "insert into chat values(?, ?)";
+        var n = jdbc.update(sql,userName,textBody);
+        return n;
+    }
 }
 

@@ -40,4 +40,12 @@ public interface IAuthUserRepository {
      *
      * @return レコードの内容を {@link AuthUser} の {@link List} で返す
      */  public List<AuthUser> find();
+
+    /**
+     * ユーザー名と送信メッセージをchatテーブルに記録する
+     *
+     * @param userName ユーザー名
+     * @param textBody 送信するメッセージの本文
+     * @return データベースの更新行数
+     */public int sendMessage(String userName,String textBody);
 }
