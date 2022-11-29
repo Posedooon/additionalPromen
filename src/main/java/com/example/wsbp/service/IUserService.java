@@ -1,6 +1,7 @@
 package com.example.wsbp.service;
 
 import com.example.wsbp.data.AuthUser;
+import com.example.wsbp.data.Chat;
 
 import java.util.List;
 
@@ -34,6 +35,13 @@ public interface IUserService {    /**
      * @return AuthUser型のListインスタンス
      */
     public List<AuthUser> findAuthUsers();
+
+    /**
+     * ユーザ名と投稿一覧を、Chat型のリストで検索する
+     *
+     * @return Chat型のListインスタンス
+     */
+    public List<Chat> findChats();
 
     /**
      * chatテーブルにメッセージを登録する

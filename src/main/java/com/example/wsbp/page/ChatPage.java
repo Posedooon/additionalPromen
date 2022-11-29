@@ -1,16 +1,18 @@
 package com.example.wsbp.page;
 
 
+import com.example.wsbp.data.Chat;
 import com.example.wsbp.service.IUserService;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.wicketstuff.annotation.mount.MountPath;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 
 @MountPath("Chat")
@@ -74,5 +76,26 @@ public class ChatPage extends WebPage {
         };
         userInfoForm.add(userTextField);
 
+        var chatList = Model.ofList(userService.findChats());
+        var chatLV = new ListView<>("chats",chatList){
+            @Override
+            protected void populateItem(ListItem<Chat> listItem){
+                // List型のモデルから、 <li>...</li> ひとつ分に分けられたモデルを取り出す
+                var itemModel = listItem.getModel();
+                var chat = itemModel.getObject(); // 元々のListの n 番目の要素
+
+                // インスタンスに入れ込まれたデータベースの検索結果を、列（＝フィールド変数）ごとにとりだして表示する
+                // add する先が listItem になることに注意。
+                var userNameModel = Model.of(chat.getUserName());
+                var userNameLabel = new Label("userName", userNameModel);
+                listItem.add(userNameLabel);
+
+                var userTextModel = Model.of(chat.getMsgBody());
+                var userTextLabel = new Label("msgBody", userTextModel);
+                listItem.add(userTextLabel);
+            }
+
+        };
+        add(chatLV);
     }
 }

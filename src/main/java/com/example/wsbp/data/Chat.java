@@ -7,19 +7,19 @@ import java.io.Serializable;
 public class Chat implements Serializable {
 
     private final String userName;  // Chatテーブルのuser_name列のデータ
-    private final String textBody;  // Chatテーブルのmsg_body列のデータ
+    private final String msgBody;  // Chatテーブルのmsg_body列のデータ
 
-    public Chat(String userName, String textBody) {
+    public Chat(String userName, String msgBody) {
         this.userName = userName;
-        this.textBody = textBody;
+        this.msgBody = msgBody;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public String getTextBody() {
-        return textBody;
+    public String getMsgBody() {
+        return msgBody;
     }
 
     @Override
@@ -30,13 +30,13 @@ public class Chat implements Serializable {
         Chat chat = (Chat) o;
 
         if (!userName.equals(chat.userName)) return false;
-        return textBody.equals(chat.textBody);
+        return msgBody.equals(chat.msgBody);
     }
 
     @Override
     public int hashCode() {
         int result = userName.hashCode();
-        result = 31 * result + textBody.hashCode();
+        result = 31 * result + msgBody.hashCode();
         return result;
     }
 }
