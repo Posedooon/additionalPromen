@@ -5,7 +5,6 @@ import com.example.wsbp.repository.IAuthUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sound.midi.Soundbank;
 import java.util.List;
 
 @Service
@@ -37,7 +36,7 @@ public class UserService implements IUserService{
 
     @Override
     public List<AuthUser> findAuthUsers() {
-        var users = authUserRepos.find();
+        var users = authUserRepos.findAuthUser();
         System.out.println("データ件数：" + users.size());
         return users;
     }
