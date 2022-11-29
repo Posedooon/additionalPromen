@@ -5,6 +5,7 @@ import com.example.wsbp.repository.IAuthUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sound.midi.Soundbank;
 import java.util.List;
 
 @Service
@@ -40,5 +41,9 @@ public class UserService implements IUserService{
         System.out.println("データ件数：" + users.size());
         return users;
     }
-
+    @Override
+    public void sendMessageUser(String userName,String textBody){
+        int n = authUserRepos.sendMessage(userName, textBody);
+        System.out.println("記録行数:"+n);
+    }
 }

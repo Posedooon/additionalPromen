@@ -34,6 +34,9 @@ public class HomePage extends WebPage{
         //BookmarkablePageLinkコンポーネントを使って、toUserDeleter のタグを UserDeleterPage へのリンクに書き換えるようにする。
         var toUserDeleterLink = new BookmarkablePageLink<>("toUserDeleter", UserDeletePage.class);
         add(toUserDeleterLink);
+
+        var toChatLink = new BookmarkablePageLink<>("toChat",ChatPage.class);
+        add(toChatLink);
     }
 }
 /*
