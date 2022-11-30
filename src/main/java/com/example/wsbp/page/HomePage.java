@@ -1,5 +1,6 @@
 package com.example.wsbp.page;
 
+import com.example.wsbp.page.signed.ChatPage;
 import com.giffing.wicket.spring.boot.context.scan.WicketHomePage;
 import org.apache.wicket.markup.html.WebPage;
 import org.wicketstuff.annotation.mount.MountPath;
@@ -35,8 +36,8 @@ public class HomePage extends WebPage{
         var toUserDeleterLink = new BookmarkablePageLink<>("toUserDeleter", UserDeletePage.class);
         add(toUserDeleterLink);
 
-        var toChatLink = new BookmarkablePageLink<>("toChat",ChatPage.class);
-        add(toChatLink);
+     //   var toChatLink = new BookmarkablePageLink<>("toChat", ChatPage.class);
+     //   add(toChatLink);
     }
 }
 /*

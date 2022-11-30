@@ -1,8 +1,10 @@
-package com.example.wsbp.page;
+package com.example.wsbp.page.signed;
 
 
 import com.example.wsbp.data.Chat;
 import com.example.wsbp.service.IUserService;
+import org.apache.wicket.authroles.authorization.strategies.role.Roles;
+import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -15,6 +17,7 @@ import org.wicketstuff.annotation.mount.MountPath;
 import org.apache.wicket.model.Model;
 
 
+@AuthorizeInstantiation(Roles.USER)
 @MountPath("Chat")
 public class ChatPage extends WebPage {
     // ServiceをIoC/DIする
